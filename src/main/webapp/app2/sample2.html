@@ -5,6 +5,139 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>윈도우 객체 실습</h1>
+	
+	<div>
+		<button id="btn-1" onclick="fn1()">경고창 열기</button>
+		<button id="btn-2" onclick="fn2()">확인창 열기</button>
+		<button id="btn-3" onclick="fn3()">팝업창 열기</button>
+		<button id="btn-4" onclick="fn4()">일회용 타이머 작동시키기</button>
+		<button id="btn-5" onclick="fn5()" >반복 타이머 작동시키기</button>
+		<button id="btn-6" onclick="fn6()" disabled ="disabled">반복 타이머 중지시키기</button>
+	</div>
+	
+	<div id="box" style="border: 1px solid black; margin-top:16px; padding:10px">메세지</div>
+	
+	<div style="border: 1px solid black; margin-top: 16px; padding:10px;">
+		입력1 : <input type="number" id="num-1" value="0"><br/>
+		입력2 :<input type="number" id="num-2" value="0"><br/>
+		결과3 :<input type="number" id="num-3" value="0"><br/>
+		
+		<div>
+			<button onclick="fn7();">더하기</button>
+			<button onclick="fn8();">빼기</button>
+			<button onclick="fn9();">곱하기</button>
+			<button onclick="fn10();">나누기</button>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+	let interValTimerId;
+
+	function fn1() {
+		// 경고창 열기
+		alert("경고창입니다.");
+	}
+	
+	function fn2() {
+		// 확인창 열기
+		let clickedValue = confirm("삭제하시겠습니까?");
+		document.querySelector("#box").textContent = clickedValue;
+	}
+	
+	function fn3() {
+		open("popup.html", "popup", "width=300, height=300")
+	}
+	
+	function fn4() {
+		// 일회용 타이머 실행시켜보기
+		setTimeout(function() {
+			alert("3초 후에 실행되었습니다.")
+		}, 3000);
+	}
+	
+	function fn5() {
+		
+		document.querySelector("#btn-5").disabled = true;
+		document.querySelector("#btn-6").disabled = false;
+		
+		// 일정주기로 실행되는 타이머 생성하기
+		let el = document.querySelector("#box");
+		
+		// 타이머에 아이디 부여하기
+		interValTimerId = setInterval(function () {
+			el.textContent = new Date();
+		}, 1000)
+	}
+	
+	function fn6() {
+		document.querySelector("#btn-5").disabled = false;
+		document.querySelector("#btn-6").disabled = true;
+		
+		clearInterval(interValTimerId);
+	}
+	
+	function fn7() {
+		// 입력필드의 값 읽기 (조회)
+		let value1 = document.querySelector("#num-1").value;	// value = "3"
+		let value2 = document.querySelector("#num-2").value;	// value = "4"
+		
+		// 계산하기
+		let number1 = parseInt(value1);
+		let number2 = parseInt(value2);
+		
+		let result = number1 + number2;
+		
+		// 입력필드의 값 변경하기 값을 (변경)
+		// 설정하는 코드가 이미 존재하면 변경 없으면 읽기 = value
+		// select이 우항에 있으면 조회, 좌항에 있으면 변경
+		document.querySelector("#num-3").value = result;
+	}
+	
+	function fn8() {
+		// 입력필드의 값 읽기 빼기 곱하기 나누기는 숫자로 형변환 하지 않아도 됨
+		// 더하기 연산은 두가지 역할 텍스트일 때 텍스트 이어붙이기, 숫자일 때 더하기 연산 역할을 하지만
+		// 빼기 곱하기 나누기 연산은 숫자의 연산만 수행하기 때문에 굳이 숫자로 형변환 하지않아도 정상 실행됨
+		let value1 = document.querySelector("#num-1").value;	// value = "3"
+		let value2 = document.querySelector("#num-2").value;	// value = "4"
+		
+		// 계산하기
+		let result = value1 - value2;
+		
+		// 입력필드의 값 변경하기 값을 설정하는 코드가 이미 존재하면 변경 없으면 읽기 = value
+		document.querySelector("#num-3").value = result;		
+	}
+	
+	function fn9() {
+		// 입력필드의 값 읽기 빼기 곱하기 나누기는 숫자로 형변환 하지 않아도 됨
+		// 더하기 연산은 두가지 역할 텍스트일 때 텍스트 이어붙이기, 숫자일 때 더하기 연산 역할을 하지만
+		// 빼기 곱하기 나누기 연산은 숫자의 연산만 수행하기 때문에 굳이 숫자로 형변환 하지않아도 정상 실행됨
+		let value1 = document.querySelector("#num-1").value;	// value = "3"
+		let value2 = document.querySelector("#num-2").value;	// value = "4"
+		
+		// 계산하기
+		let result = value1 * value2;
+		
+		// 입력필드의 값 변경하기 값을 설정하는 코드가 이미 존재하면 변경 없으면 읽기 = value
+		document.querySelector("#num-3").value = result;
+		
+	}
+	
+	function fn10() {
+		// 입력필드의 값 읽기 빼기 곱하기 나누기는 숫자로 형변환 하지 않아도 됨
+		// 더하기 연산은 두가지 역할 텍스트일 때 텍스트 이어붙이기, 숫자일 때 더하기 연산 역할을 하지만
+		// 빼기 곱하기 나누기 연산은 숫자의 연산만 수행하기 때문에 굳이 숫자로 형변환 하지않아도 정상 실행됨
+		let value1 = document.querySelector("#num-1").value;	// value = "3"
+		let value2 = document.querySelector("#num-2").value;	// value = "4"
+		
+		// 계산하기
+		let result = value1 / value2;
+		
+		// 입력필드의 값 변경하기 값을 설정하는 코드가 이미 존재하면 변경 없으면 읽기 = value
+		document.querySelector("#num-3").value = result;
+
+	}
+</script>
 <script type="text/javascript">
 	// 브라우저 환경에서 제공하는 객체
 	//		전역객체(Global Object)
@@ -35,10 +168,27 @@
 	//		Style 객체		- 태그의 스타일을 표현하는 객체다.
 	//		Events 객체		- 이벤트를 표현하는 객체다.
 	
-	// window 객체의 주요 메서드
-	//		alert(text)		 - 경고창을 표시한다.
-	//		confirm(text)	 - 확인창을 표시한다. 확인/취소 버튼 클릭여부를 확인할 수 있다.
-	//		open(url, name, specs) - 새 창을 연다.
+	// window 객체
+	//		window 객체의 주요 프로퍼티
+	//			self			- 현재 창을 나타낸다.
+	//			opener			- 현재 팝업을 생성한 윈도우객체를 나타낸다.
+	//			console 		- 콘솔창 출력에 필요한 메서드가 포함된 콘솔객체를 반환한다.
+	//			document		- HTML, Document객체를 반환한다.
+	//			history			- History 객체를 반환한다.
+	//			location 		- Location 객체를 반환한다.
+	//			navigator		- Navigator 객체를 반환한다.
+	//			screen			- Screen 객체를 반환한다.
+	// 		window 객체의 주요 메서드
+	//			alert(text)		 - 경고창을 표시한다.
+	//			confirm(text)	 - 확인창을 표시한다. 확인/취소 버튼 클릭여부를 확인할 수 있다.
+	//			open(url, name, specs) - 새 창을 연다.
+	//			close()			 - 현재 창을 닫는다.
+	//			parseInt(text)	 - 텍스트를 정수로 변환해서 반환한다.
+	//			parseFloat(text) - 텍스트를 실수로 변환해서 반환한다.
+	//			setTimeout(콜백함수, 시간) - 지정된 시간이 경과된 후 콜백함수가 한 번 실행한다.
+	//			setInterval(콜백함수, 시간) - 지정된 시간이 경과될 때마다 콜백함수가 실행된다.
+	//			clearTimeout()	 - 지정된 아이디를 가진 타이머를 실행 중지시킨다.
+	//			clearInterval()	 - 지정된 아이디를 가진 타이머를 실행 중지시킨다.
 	
 </script>
 </body>

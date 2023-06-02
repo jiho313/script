@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+	table {
+		border: 1px solid black;
+		border-collapse: collapse;
+		width: 100%;
+		margin-top: 16px;
+	}
+	th, td {
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+	<h1>선택하기</h1>
+	
+	<div>
+		<button onclick="fn1();">전체 선택</button>
+		<button onclick="fn2();">전체 해제</button>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>이름</th>
+				<th>연락처</th>
+				<th>이메일</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row-101">
+				<td><input type="checkbox" name="ck" /></td>
+				<td>김유신</td>
+				<td>010-1111-1111</td>
+				<td>kim@gmail.com</td>
+				<td><button onclick="fn3('row-101');">삭제</button> </td>
+			</tr>
+			<tr id="row-102">
+				<td><input type="checkbox" name="ck" /></td>
+				<td>강감찬</td>
+				<td>010-2222-2222</td>
+				<td>kang@gmail.com</td>
+				<td><button onclick="fn3('row-102');">삭제</button> </td>
+			</tr>
+			<tr id="row-103">
+				<td><input type="checkbox" name="ck" /></td>
+				<td>이순신</td>
+				<td>010-3333-3333</td>
+				<td>lee@gmail.com</td>
+				<td><button onclick="fn3('row-103');">삭제</button> </td>
+			</tr>
+			<tr id="row-104">
+				<td><input type="checkbox" name="ck" /></td>
+				<td>류관순</td>
+				<td>010-4444-4444</td>
+				<td>ryoe@gmail.com</td>
+				<td><button onclick="fn3('row-104');">삭제</button> </td>
+			</tr>
+		</tbody>
+	</table>
+	
+<script type="text/javascript">
+	// 전체 선택하기
+	function fn1() {
+		changeChecked(true);
+	}
+	
+	// 전체 해제하기
+	function fn2() {
+		changeChecked(false);
+	}
+	
+	function fn3(rowId) {
+		let element = document.getElementById(rowId);
+		//cosole.log(element);
+		element.remove();
+	}
+	
+	function changeChecked(checked) {
+		let elements = document.querySelectorAll("[name=ck]");
+		elements.forEach(function(el, index) {
+			el.checked = checked;
+		}) 
+	}
+
+</script>
+</body>
+</html>
