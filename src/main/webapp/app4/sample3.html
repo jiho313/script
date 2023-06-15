@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+</head>
+<body>
+	<h1>키보드 이벤트</h1>
+	
+	<form action="insert.jsp" method="post">
+		<div>
+			<label>아이디</label>
+			<input type="text" id="user-id" name="userid" 
+				onkeydown="fn1(event)" onkeypress="fn2(event)" onkeyup="fn3(event)"/>
+		</div>
+	</form>
+<script type="text/javascript">
+/* 영어를 입력하면 그대로 a가 나오는데 한글 ㅁ를 입력하면 a자리에 ㅁ이 있기 때문에 a가 표시된다. */
+	function fn1(e) {
+		//console.log("onkeydown ->", e.key);
+		let key = e.key;
+		console.log("키값["+key+"]");
+		if (key === 'Process') {
+			console.log("prevent")
+			e.preventDefault();
+		}
+	}
+	
+	function fn2(e) {
+		//console.log("onkeypress ->", e.key);
+	}
+	
+	function fn3(e) {
+		//console.log("onkeyup ->", e.key);
+	}
+</script>
+</body>
+</html>

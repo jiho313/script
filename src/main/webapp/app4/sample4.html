@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+</head>
+<body>
+	<h1>폼 이벤트</h1>
+	
+	<form action=login.jsp method="post" onsubmit="return fn1();">
+		<div>
+			<label>이름</label>
+			<input type="text" id="user-id" name="id">
+		</div>
+		<div>
+			<label>비밀번호</label>
+			 <input type="text" id="user-password" name="pwd">
+		</div>
+		<div>
+		<!-- submit에 onclick을 적으면 안된다. -->
+			<button type="submit">submit 버튼</button>
+		</div>
+	</form>
+	
+	<form id="form-login" action=login.jsp method="post" >
+		<div>
+			<label>이름</label>
+			<input type="text" id="user-id-2" name="id">
+		</div>
+		<div>
+			<label>비밀번호</label>
+			 <input type="text" id="user-password-2" name="pwd">
+		</div>
+		<div>
+		<!-- submit에 onclick을 적으면 안된다. -->
+			<button type="button" onclick="fn2();">일반 버튼</button>
+		</div>
+	</form>	
+	
+<script type="text/javascript">
+	// 입력값 체크
+	/* 
+		submit 버튼
+			* submit 버튼을 클릭하면, <form>태그에서 onsubmit 이벤트가 발생한다. 
+			* onsubmit 이벤트가 발생하면, 폼의 입력값이 서버로 제출된다.
+			* onsubmit 이벤트 발생시, <form>태그는 폼 입력값을 서버로 제출하는 것이 기본동작이다. 
+			* 입력값 체크를 통과한 경우 - 폼 입력값이 서버로 제출되므로 처리할 내용이 없다.
+			* 입려값 체크를 통과하지 못한 경우 - 폼 입력값이 서버로 제출되지 않아야 함
+											   - 폼 입력값이 서버로 제출되는 기본동작이 일어나지 않아야 함
+			
+		일반 버튼
+			* 일반 버튼을 클릭하면, <form>태그에서 onsubmit 이벤트가 발생하지 않는다.
+			* onsubmit 이벤트가 발생하지 않으므로, 폼 입력값이 서버로 제출되지 않는다.
+			* 입력값 체크를 통과한 경우 - 폼 입력값이 서버로 제출되도록 한다.
+										- <form>태그에서 onsubmit 이벤트를 강제 발생시킨다.
+			* 입력값 체크를 통과하지 못한 경우 - onsbmit이벤트가 발생하지 않으므로 처리할 내용 없다.
+	*/
+	
+	// 입력값 체크를 통과한 경우, true를 반환한다.
+	// 입력값 체크를 통과하지 못한 경우, false를 반환한다.
+	function fn1() {
+		let id = document.getElementById("user-id").value;
+		let password = document.getElementById("user-password").value;
+		
+		if (id === "") {
+			alert("아이디는 필수 입력값입니다.");
+			return false;
+		}
+		
+		if (password === "") {
+			alert("비밀번호는 필수 입력값입니다.");
+			return false;
+		}
+		
+		// 입력값 체크를 통과한 경우 
+		return true;
+	}
+										
+	function fn2() {
+		let id = document.getElementById("user-id-2").value;
+		let password = document.getElementById("user-password-2").value;
+		
+		if (id === "") {
+			alert("아이디는 필수 입력값입니다.");
+			return false;
+		}
+		
+		if (password === "") {
+			alert("비밀번호는 필수 입력값입니다.");
+			return false;
+		}
+		
+		// 입력값 체크를 통과한 경우 
+		let form = document.getElementById("form-login");
+		// form 엘리먼트에서 submit 이벤트를 강제 발생시킨다.
+		form.submit();
+	}									
+	
+</script>
+</body>
+</html>

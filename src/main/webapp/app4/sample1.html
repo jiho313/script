@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		border: 1px solid black;
+		padding: 16px;
+		margin: 16px;
+	}
+</style>
+</head>
+<body>
+	<h1>마우스 이벤트</h1>
+	<!-- 한 엘리먼트에 여러 개의 이벤트를 등록할 수 있음 -->
+	<div id="box-1" onclick="fn1(event);" onmouseenter="fn2(event);" onmouseleave="fn3(event);">
+		박스1
+		<div id="box-2" onmouseover="fn2(event);">
+			박스2
+		</div>
+	</div>
+<script type="text/javascript">
+	function fn1(event) {
+		console.log(event.currentTarget, "onclick 이벤트가 발생하였습니다.");
+	}
+	
+	function fn2(event) {
+		console.log(event.currentTarget,"onmouseenter 이벤트가 발생하였습니다.");
+	}
+	
+	function fn3(event) {
+		console.log(event.currentTarget,"onmouseleave 이벤트가 발생하였습니다.");
+	}
+</script>
+</body>
+</html>
